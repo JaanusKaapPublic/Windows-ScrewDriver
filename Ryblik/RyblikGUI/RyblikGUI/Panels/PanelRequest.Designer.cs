@@ -42,8 +42,6 @@
             this.txtErr = new System.Windows.Forms.TextBox();
             this.chkRead = new System.Windows.Forms.CheckBox();
             this.chkWrite = new System.Windows.Forms.CheckBox();
-            this.panelFuzz = new System.Windows.Forms.Panel();
-            this.btnFuzz = new System.Windows.Forms.Button();
             this.btnGeneratePython = new System.Windows.Forms.Button();
             this.txtErrMsg = new System.Windows.Forms.TextBox();
             this.btnSetAccess = new System.Windows.Forms.Button();
@@ -178,23 +176,6 @@
             this.chkWrite.Text = "WRITE";
             this.chkWrite.UseVisualStyleBackColor = true;
             // 
-            // panelFuzz
-            // 
-            this.panelFuzz.Location = new System.Drawing.Point(642, 300);
-            this.panelFuzz.Name = "panelFuzz";
-            this.panelFuzz.Size = new System.Drawing.Size(328, 238);
-            this.panelFuzz.TabIndex = 15;
-            // 
-            // btnFuzz
-            // 
-            this.btnFuzz.Location = new System.Drawing.Point(689, 544);
-            this.btnFuzz.Name = "btnFuzz";
-            this.btnFuzz.Size = new System.Drawing.Size(235, 23);
-            this.btnFuzz.TabIndex = 16;
-            this.btnFuzz.Text = "Fuzz";
-            this.btnFuzz.UseVisualStyleBackColor = true;
-            this.btnFuzz.Click += new System.EventHandler(this.btnFuzz_Click);
-            // 
             // btnGeneratePython
             // 
             this.btnGeneratePython.Location = new System.Drawing.Point(642, 163);
@@ -307,8 +288,6 @@
             this.Controls.Add(this.btnSetAccess);
             this.Controls.Add(this.txtErrMsg);
             this.Controls.Add(this.btnGeneratePython);
-            this.Controls.Add(this.btnFuzz);
-            this.Controls.Add(this.panelFuzz);
             this.Controls.Add(this.chkWrite);
             this.Controls.Add(this.chkRead);
             this.Controls.Add(this.txtErr);
@@ -346,8 +325,6 @@
         private System.Windows.Forms.TextBox txtErr;
         private System.Windows.Forms.CheckBox chkRead;
         private System.Windows.Forms.CheckBox chkWrite;
-        private System.Windows.Forms.Panel panelFuzz;
-        private System.Windows.Forms.Button btnFuzz;
         private System.Windows.Forms.Button btnGeneratePython;
         private System.Windows.Forms.TextBox txtErrMsg;
         private System.Windows.Forms.Button btnSetAccess;

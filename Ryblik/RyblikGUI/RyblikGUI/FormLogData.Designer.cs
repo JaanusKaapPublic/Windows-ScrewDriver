@@ -30,12 +30,6 @@
         {
             this.tree = new System.Windows.Forms.TreeView();
             this.table = new System.Windows.Forms.DataGridView();
-            this.btnFuzz = new System.Windows.Forms.Button();
-            this.panelFuzz = new System.Windows.Forms.Panel();
-            this.btnSelectAll = new System.Windows.Forms.Button();
-            this.lblProgress = new System.Windows.Forms.Label();
-            this.chkLastTarget = new System.Windows.Forms.CheckBox();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.index = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.driver = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.device = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,6 +37,8 @@
             this.inputSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.outputSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.open = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnSelectAll = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,65 +73,6 @@
             this.table.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.table_CellClick);
             this.table.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.table_CellContentClick);
             this.table.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.table_ColumnHeaderMouseClick);
-            // 
-            // btnFuzz
-            // 
-            this.btnFuzz.Location = new System.Drawing.Point(410, 545);
-            this.btnFuzz.Name = "btnFuzz";
-            this.btnFuzz.Size = new System.Drawing.Size(235, 23);
-            this.btnFuzz.TabIndex = 18;
-            this.btnFuzz.Text = "Fuzz";
-            this.btnFuzz.UseVisualStyleBackColor = true;
-            this.btnFuzz.Click += new System.EventHandler(this.btnFuzz_Click);
-            // 
-            // panelFuzz
-            // 
-            this.panelFuzz.Location = new System.Drawing.Point(410, 352);
-            this.panelFuzz.Name = "panelFuzz";
-            this.panelFuzz.Size = new System.Drawing.Size(235, 187);
-            this.panelFuzz.TabIndex = 17;
-            // 
-            // btnSelectAll
-            // 
-            this.btnSelectAll.Location = new System.Drawing.Point(12, 563);
-            this.btnSelectAll.Name = "btnSelectAll";
-            this.btnSelectAll.Size = new System.Drawing.Size(345, 22);
-            this.btnSelectAll.TabIndex = 19;
-            this.btnSelectAll.Text = "Select all";
-            this.btnSelectAll.UseVisualStyleBackColor = true;
-            this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
-            // 
-            // lblProgress
-            // 
-            this.lblProgress.AutoSize = true;
-            this.lblProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProgress.Location = new System.Drawing.Point(679, 436);
-            this.lblProgress.Name = "lblProgress";
-            this.lblProgress.Size = new System.Drawing.Size(57, 20);
-            this.lblProgress.TabIndex = 20;
-            this.lblProgress.Text = "label1";
-            // 
-            // chkLastTarget
-            // 
-            this.chkLastTarget.AutoSize = true;
-            this.chkLastTarget.Checked = true;
-            this.chkLastTarget.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkLastTarget.Location = new System.Drawing.Point(410, 574);
-            this.chkLastTarget.Name = "chkLastTarget";
-            this.chkLastTarget.Size = new System.Drawing.Size(120, 17);
-            this.chkLastTarget.TabIndex = 21;
-            this.chkLastTarget.Text = "Store last target info";
-            this.chkLastTarget.UseVisualStyleBackColor = true;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(1172, 315);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(95, 23);
-            this.btnDelete.TabIndex = 22;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // index
             // 
@@ -189,17 +126,33 @@
             this.open.ReadOnly = true;
             this.open.Width = 60;
             // 
+            // btnSelectAll
+            // 
+            this.btnSelectAll.Location = new System.Drawing.Point(12, 563);
+            this.btnSelectAll.Name = "btnSelectAll";
+            this.btnSelectAll.Size = new System.Drawing.Size(345, 22);
+            this.btnSelectAll.TabIndex = 19;
+            this.btnSelectAll.Text = "Select all";
+            this.btnSelectAll.UseVisualStyleBackColor = true;
+            this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(1172, 315);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(95, 23);
+            this.btnDelete.TabIndex = 22;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // FormLogData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1279, 597);
             this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.chkLastTarget);
-            this.Controls.Add(this.lblProgress);
             this.Controls.Add(this.btnSelectAll);
-            this.Controls.Add(this.btnFuzz);
-            this.Controls.Add(this.panelFuzz);
             this.Controls.Add(this.table);
             this.Controls.Add(this.tree);
             this.MaximizeBox = false;
@@ -207,7 +160,6 @@
             this.Text = "Stored data";
             ((System.ComponentModel.ISupportInitialize)(this.table)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -215,11 +167,7 @@
 
         private System.Windows.Forms.TreeView tree;
         private System.Windows.Forms.DataGridView table;
-        private System.Windows.Forms.Button btnFuzz;
-        private System.Windows.Forms.Panel panelFuzz;
         private System.Windows.Forms.Button btnSelectAll;
-        private System.Windows.Forms.Label lblProgress;
-        private System.Windows.Forms.CheckBox chkLastTarget;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.DataGridViewTextBoxColumn index;
         private System.Windows.Forms.DataGridViewTextBoxColumn driver;

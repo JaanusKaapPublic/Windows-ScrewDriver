@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static RyblikGUI.Fuzz;
 using static RyblikGUI.RBLK;
 
 namespace RyblikGUI
@@ -16,7 +15,6 @@ namespace RyblikGUI
     public partial class FormLogData : Form
     {        
         private Form1 parent = null;
-        private PanelFuzzConf fuzzConf;
         //private Dictionary<String, TreeNodeLogDriver> drivers = new Dictionary<string, TreeNodeLogDriver>();
         private List<RblkMessageStruct> currentList = new List<RblkMessageStruct>();
         private MainMenu mainMenu;
@@ -32,7 +30,6 @@ namespace RyblikGUI
             parent = parentIn;
             createMenu();
             fillTree(callsIn);
-            lblProgress.Text = "";
         }
 
         private void createMenu()
@@ -70,9 +67,6 @@ namespace RyblikGUI
                 tree.Nodes.Add(node);
             }
             tree.Sort();
-
-            fuzzConf = new PanelFuzzConf();
-            panelFuzz.Controls.Add(fuzzConf);
         }
 
         private void refreshList()
@@ -84,7 +78,6 @@ namespace RyblikGUI
                 object[] row = new object[] { idx++, log.driverName, log.deviceName, "0x" + log.code.ToString("X"), "0x" + log.input.Length.ToString("X"), "0x" + log.outputSize.ToString("X"), "open", false };
                 table.Rows.Add(row);
             }
-            btnFuzz.Focus();
         }
 
         private void tree_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -96,58 +89,7 @@ namespace RyblikGUI
                 refreshList();
             }
         }
-
-        private void btnFuzz_Click(object sender, EventArgs e)
-        {
-            Thread thread = new Thread(new ThreadStart(btnFuzz_Click_Thread));
-            thread.Start();
-        }
-
-        private void btnFuzz_Click_Thread()
-        {
-            FUZZ_CONF[] conf = fuzzConf.getConf();
-
-            btnFuzz.Enabled = false;
-            for (int x = 0; x < table.Rows.Count; x++)
-            {
-                if (!table.Rows[x].Selected)
-                    continue;
-                int idx = (int)table.Rows[x].Cells[0].Value;
-                RblkMessageStruct selection = currentList[idx];
-
-                uint code = selection.code;
-                uint outSize = selection.outputSize;
-                uint access = (code >> 14) & 0x3;
-                byte[] inputBuffer = selection.input;
-
-                if (chkLastTarget.Checked)
-                {
-                    while (true)
-                    {
-                        try
-                        {
-                            System.IO.StreamWriter file = new System.IO.StreamWriter("lastTarget.txt");
-                            file.WriteLine(idx + "/" + table.Rows.Count + ": " + selection.deviceName + " with code " + code.ToString("X"));
-                            file.Flush();
-                            file.Close();
-                            break;
-                        }
-                        catch
-                        {
-                            lblProgress.Text = "Waiting to write file";
-                            Thread.Sleep(500);
-                        }
-                    }
-                }
-
-                lblProgress.Text = idx + "/" + table.Rows.Count + ": " + selection.deviceName + " with code " + code.ToString("X");
-                Fuzz fuzz = new Fuzz();
-                //fuzz.fuzz(selection.deviceName, access, code, inputBuffer, outSize, conf);
-            }
-            lblProgress.Text = "DONE";
-            btnFuzz.Enabled = true;
-        }
-
+        
         private void btnSelectAll_Click(object sender, EventArgs e)
         {
             currentList = new List<RblkMessageStruct>();

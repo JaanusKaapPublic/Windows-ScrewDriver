@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Be.Windows.Forms;
-using static RyblikGUI.Fuzz;
 using static RyblikGUI.RBLK;
 using RyblikGUI.Exceptions;
 using RyblikGUI.Analysis;
@@ -21,7 +20,6 @@ namespace RyblikGUI
         Form1 parent;
         private HexBox hexBoxIn;
         private HexBox hexBoxOut;
-        private PanelFuzzConf fuzzConf;
         SaveFileDialog saveFileDialog = new SaveFileDialog();
 
 
@@ -89,9 +87,6 @@ namespace RyblikGUI
                 ReadOnly = true
             };
             panelHexOut.Controls.Add(hexBoxOut);
-
-            fuzzConf = new PanelFuzzConf();
-            panelFuzz.Controls.Add(fuzzConf);
         }
 
         private void btnSend_Click(object sender, EventArgs e)
@@ -125,33 +120,6 @@ namespace RyblikGUI
                 txtErr.Text = "0x" + err.ToString("X");
                 txtErrMsg.Text = Conversions.errorNames(err);
             }
-        }
-
-        private void btnFuzz_Click(object sender, EventArgs e)
-        {
-            FUZZ_CONF[] confSets = fuzzConf.getConf();
-            btnFuzz.Enabled = false;
-
-            uint code = Conversions.convert2uint(txtCtrlCode.Text);
-            uint outSize = Conversions.convert2uint(txtMaxOut.Text);
-            uint access = 0;
-
-            if (chkRead.Checked)
-                access |= 1;
-            if (chkWrite.Checked)
-                access |= 2;
-
-            byte[] inputBuffer = new byte[hexBoxIn.ByteProvider.Length];
-            for (int x = 0; x < inputBuffer.Length; x++)
-                inputBuffer[x] = hexBoxIn.ByteProvider.ReadByte(x);
-
-            Fuzz fuzz = new Fuzz();
-            fuzz.setLogFile(fuzzConf.getLogFilename());
-            Task.Run(() => 
-            {
-                fuzz.fuzz(txtDevice.Text, access, code, inputBuffer, outSize, confSets); 
-                btnFuzz.Enabled = true; 
-            });            
         }
 
         private void btnGeneratePython_Click(object sender, EventArgs e)

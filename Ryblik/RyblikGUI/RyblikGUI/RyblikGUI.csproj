@@ -126,10 +126,6 @@
     <Compile Include="Forms\FormResultText.Designer.cs">
       <DependentUpon>FormResultText.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fuzz.cs" />
-    <Compile Include="FuzzMutations\FuzzMutation.cs" />
-    <Compile Include="FuzzMutations\FuzzMutationFactory.cs" />
-    <Compile Include="FuzzMutations\FuzzMutationFlipBits.cs" />
     <Compile Include="Panels\PanelDevice.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -141,12 +137,6 @@
     </Compile>
     <Compile Include="Panels\PanelDriver.Designer.cs">
       <DependentUpon>PanelDriver.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Panels\PanelFuzzConf.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Panels\PanelFuzzConf.Designer.cs">
-      <DependentUpon>PanelFuzzConf.cs</DependentUpon>
     </Compile>
     <Compile Include="Panels\PanelMainCtrl.cs">
       <SubType>UserControl</SubType>
@@ -195,9 +185,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\PanelDriver.resx">
       <DependentUpon>PanelDriver.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Panels\PanelFuzzConf.resx">
-      <DependentUpon>PanelFuzzConf.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\PanelMainCtrl.resx">
       <DependentUpon>PanelMainCtrl.cs</DependentUpon>
